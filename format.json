@@ -1,0 +1,29 @@
+{
+    presets: {
+        //a preset is a default template applied to a route element. all of its values are copied into the route element but can be overridden by it or another preset.
+        //a preset cannot have a 'presets' field
+        "preset_name": {
+            key: "value"
+        },
+        "default" {
+            //default preset, applied to every route element
+        }
+    },
+    route: [{
+        id: "string, id of location",
+        lat: "number, latitude of location",
+        lng: "number, longitude of location",
+        comment: "string, comment to be shown with this step",
+        draw_path: "boolean, should a path be drawn between the last objective and this one?",
+        path_coords: [
+
+        ],
+        cam_last: "boolean, should the camera zoom to show both this objective and the last objective?",
+        counter: [
+            "counter command, in the format of '<counter><operation><value>'. counter is any alphanumeric or underscore string, operation is '+','-','*','/',or '=', and value is any number."
+        ],
+        presets: [
+            "string, name of preset"
+        ]
+    }]
+}
