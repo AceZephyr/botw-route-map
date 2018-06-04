@@ -14,7 +14,8 @@
     <script src="data.js"></script>
     <style>
         body {
-            margin: 8px;
+            margin: 0;
+            background-color: #000;
         }
 
         #botw-map {
@@ -42,9 +43,9 @@
 <body>
     <div id="botw-map"></div>
     <script>
-        $("#botw-map").css("height", (window.innerHeight - 16) + "px");
+        $("#botw-map").css("height", (window.innerHeight) + "px");
         $(window).resize(function () {
-            $("#botw-map").css("height", (window.innerHeight - 16) + "px");
+            $("#botw-map").css("height", (window.innerHeight) + "px");
         });
 
         function drawPoints(dataArray, imgURL = "icons/marker.png", divClass = "", tooltipFunction = null,
