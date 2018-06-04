@@ -55,10 +55,10 @@
                 var tooltip = null;
                 if (tooltipFunction !== null) {
                     tooltip = tooltipFunction(dataArray[i]);
-                    if(typeof tooltip === "string") {
+                    if (typeof tooltip === "string") {
                         tooltip = [tooltip, {}]
                     }
-                    if(typeof tooltip[1].direction === "undefined") {
+                    if (typeof tooltip[1].direction === "undefined") {
                         tooltip[1].direction = "top";
                     }
                 }
@@ -123,7 +123,13 @@
         drawPoints(locations.Item_CookSet_PanOnly.locations, "icons/icon-pot.png", "", function (pot) {
             return "Cooking Pot (Pan Only)";
         });
-        
+        drawPoints(locations.TwnObj_AncientReactorFurnace_A_01.locations, "icons/tech-lab.png", "", function (lab) {
+            return "Hateno Ancient Tech Lab";
+        });
+        drawPoints(locations.TwnObj_AncientReactorFurnace_B_01.locations, "icons/tech-lab.png", "", function (lab) {
+            return "Akkala Ancient Tech Lab";
+        });
+
         /*function convertCoords(lat,
             lng) {
             //converts coordinates from ZeldaDungeon to ObjectMap
