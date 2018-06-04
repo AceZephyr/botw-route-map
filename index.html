@@ -55,6 +55,12 @@
                 var tooltip = null;
                 if (tooltipFunction !== null) {
                     tooltip = tooltipFunction(dataArray[i]);
+                    if(typeof tooltip === "string") {
+                        tooltip = [tooltip, {}]
+                    }
+                    if(typeof tooltip[1].direction === "undefined") {
+                        tooltip[1].direction = "top";
+                    }
                 }
                 var title = "";
                 if (titleFunction !== null) {
@@ -81,7 +87,44 @@
             }
         }
 
-        function convertCoords(lat,
+        var map = L.map('botw-map', {
+            preferCanvas: true,
+            minZoom: -4,
+            maxZoom: 4,
+            center: [0, 0],
+            zoom: -4,
+            crs: L.CRS.Simple
+        });
+        var southWest = map.unproject([-6000, 5000], 0);
+        var northEast = map.unproject([6000, -5000], 0);
+        var bounds = new L.LatLngBounds(southWest, northEast);
+        L.imageOverlay('BotW-Map.png', bounds).addTo(map);
+        map.setMaxBounds(bounds);
+
+        drawPoints(DATA.seeds, "icons/korok.png", "", function (korok) {
+            return ["SSN: " + korok.id + ", ZDN: " + korok.zd_id + ", OBJ: " + korok.obj_map_id, {
+                direction: "top"
+            }];
+        });
+
+        drawPoints(DATA.shrines, "icons/shrine.png", "", function (shrine) {
+            return shrine.id;
+        });
+        drawPoints(DATA.towers, "icons/tower.png", "", function (tower) {
+            return tower.id;
+        });
+        drawPoints(locations.FldObj_FirstShrine_A_01.locations, "icons/shrine-of-resurrection.png", "", function (
+            shrine) {
+            return "Shrine of Resurrection";
+        })
+        drawPoints(locations.Item_CookSet.locations, "icons/icon-pot.png", "", function (pot) {
+            return "Cooking Pot";
+        });
+        drawPoints(locations.Item_CookSet_PanOnly.locations, "icons/icon-pot.png", "", function (pot) {
+            return "Cooking Pot (Pan Only)";
+        });
+        
+        /*function convertCoords(lat,
             lng) {
             //converts coordinates from ZeldaDungeon to ObjectMap
             var newLat = ((lat - 0.714) * 11645.0168512) - 529.562734724;
@@ -110,53 +153,7 @@
             }
             console.log(minI);
             return minI;
-        }
-        var map = L.map('botw-map', {
-            preferCanvas: true,
-            minZoom: -4,
-            maxZoom: 4,
-            center: [0, 0],
-            zoom: -4,
-            crs: L.CRS.Simple
-        });
-        var southWest = map.unproject([-6000, 5000], 0);
-        var northEast = map.unproject([6000, -5000], 0);
-        var bounds = new L.LatLngBounds(southWest, northEast);
-        L.imageOverlay('BotW-Map.png', bounds).addTo(map);
-        map.setMaxBounds(bounds);
-
-        drawPoints(DATA.seeds, "icons/korok.png", "", function (korok) {
-            return ["SSN: " + korok.id + ", ZDN: " + korok.zd_id + ", OBJ: " + korok.obj_map_id, {
-                direction: "top"
-            }];
-        });
-
-        drawPoints(DATA.shrines, "icons/shrine.png", "", function (shrine) {
-            return [shrine.id, {
-                direction: "top"
-            }]
-        });
-        drawPoints(DATA.towers, "icons/tower.png", "", function (tower) {
-            return [tower.id, {
-                direction: "top"
-            }]
-        });
-        drawPoints(locations.FldObj_FirstShrine_A_01.locations, "icons/shrine-of-resurrection.png", "", function (
-            shrine) {
-            return ["Shrine of Resurrection", {
-                direction: "top"
-            }]
-        })
-        drawPoints(locations.Item_CookSet.locations, "icons/icon-pot.png", "", function (pot) {
-            return ["Cooking Pot", {
-                direction: "top"
-            }]
-        });
-        drawPoints(locations.Item_CookSet_PanOnly.locations, "icons/icon-pot.png", "", function (pot) {
-            return ["Cooking Pot (Pan Only)", {
-                direction: "top"
-            }]
-        });
+        } */
     </script>
 </body>
 
