@@ -157,7 +157,7 @@
 				var titleFunction = get(opt.titleFunction, null);
 				var layerGroup = L.layerGroup();
 				for (var i = 0; i < opt.locations.length + 0; i++) {
-					var tooltip = get(opt.tooltip, null);
+					var tooltip = get(opt.tooltip, "");
 					var loc = opt.locations[i];
 					if (tooltipFunction !== null) {
 						tooltip = tooltipFunction(loc);
