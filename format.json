@@ -22,6 +22,7 @@
         counter: [
             "counter command, in the format of '<counter><operation><value>'. counter is any alphanumeric or underscore string, operation is '+','-','*','/',or '=', and value is any number."
         ],
+        img: "string, image path to draw objective on which overrides the default",
         presets: [
             "string, name of preset"
         ]
