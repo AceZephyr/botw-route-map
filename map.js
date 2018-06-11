@@ -15,7 +15,7 @@ function showList() {
 $(window).resize(setMapSize);
 
 function setMapSize() {
-    $('#botw-map-container').css("height", (window.innerHeight) * (2 / 3));
+    $('#botw-map-container').css("height", (window.innerHeight));
 }
 setMapSize();
 
@@ -23,8 +23,8 @@ function get(object, defaultObject) {
     return typeof object !== "undefined" ? object : defaultObject;
 }
 
+
 function addMapPointsToData(obj) {
-    console.log(obj);
     for ([key, val] of Object.entries(obj)) {
         dataArr[key] = val;
     }
@@ -36,20 +36,23 @@ function togglePoints(name) {
         //it's invisible. make it visible.
         var imgURL = get(opt.img, "icons/marker.png");
         var divClass = get(opt.divClass, "");
-        var tooltipFunction = get(opt.tooltipFunction, null);
+        var popupFunction = get(opt.popupFunction, null);
         var titleFunction = get(opt.titleFunction, null);
         var layerGroup = L.layerGroup();
-        for (var i = 0; i < opt.locations.length + 0; i++) {
-            var tooltip = get(opt.tooltip, "");
+        var zeroes = "0".repeat(Math.ceil(Math.log10(opt.locations.length)));
+        for (var i = 0; i < opt.locations.length; i++) {
+            var iStr = i + "";
+            var id = name + "@" + (zeroes.substr(0, zeroes.length - iStr.length) + iStr)
+            var popup = get(opt.popup, id);
             var loc = opt.locations[i];
-            if (tooltipFunction !== null) {
-                tooltip = tooltipFunction(loc);
+            if (popupFunction !== null) {
+                popup = popupFunction(loc);
             }
-            if (typeof tooltip === "string") {
-                tooltip = [tooltip, {}]
+            if (typeof popup === "string") {
+                popup = ["<div class='popup' title='Click to copy ID'>" + popup + "</div><textarea class='popup-hidden-text' id='popup-text-" + id + "'>" + id + "</textarea>", {}]
             }
-            if (typeof tooltip[1].direction === "undefined") {
-                tooltip[1].direction = "top";
+            if (typeof popup[1].direction === "undefined") {
+                popup[1].direction = "top";
             }
             var title = "";
             if (titleFunction !== null) {
@@ -68,8 +71,8 @@ function togglePoints(name) {
                     html: "<img " + title + " class='" + divClass + "' src='" + imgURL + "'>"
                 })
             });
-            if (tooltip !== null && Array.isArray(tooltip) && tooltip.length === 2) {
-                marker.bindTooltip(tooltip[0], tooltip[1]);
+            if (popup !== null && Array.isArray(popup) && popup.length === 2) {
+                marker.bindPopup(popup[0], popup[1]);
             };
             layerGroup.addLayer(marker);
         }
@@ -98,36 +101,29 @@ L.imageOverlay('BotW-Map.png', bounds).addTo(map);
 map.setMaxBounds(bounds);
 
 locations.FldObj_FirstShrine_A_01.img = "icons/shrine-of-resurrection.png";
-locations.FldObj_FirstShrine_A_01.tooltip = "Shrine of Resurrection";
+locations.FldObj_FirstShrine_A_01.popup = "Shrine of Resurrection";
 locations.Item_CookSet.img = "icons/icon-pot.png";
-locations.Item_CookSet.tooltip = "Cooking Pot";
+locations.Item_CookSet.popup = "Cooking Pot";
 locations.Item_CookSet_PanOnly.img = "icons/icon-pot.png";
-locations.Item_CookSet_PanOnly.tooltip = "Cooking Pot (Pan Only)";
+locations.Item_CookSet_PanOnly.popup = "Cooking Pot (Pan Only)";
 locations.TwnObj_AncientReactorFurnace_A_01.img = "icons/tech-lab.png";
-locations.TwnObj_AncientReactorFurnace_A_01.tooltip = "Hateno Ancient Tech Lab";
+locations.TwnObj_AncientReactorFurnace_A_01.popup = "Hateno Ancient Tech Lab";
 locations.TwnObj_AncientReactorFurnace_B_01.img = "icons/tech-lab.png";
-locations.TwnObj_AncientReactorFurnace_B_01.tooltip = "Akkala Ancient Tech Lab";
+locations.TwnObj_AncientReactorFurnace_B_01.popup = "Akkala Ancient Tech Lab";
 DATA['Cooking Pot'] = locations.Item_CookSet;
-DATA['Cooking Pot'].tooltip = "Cooking Pot";
+DATA['Cooking Pot'].popup = "Cooking Pot";
 DATA['Cooking Pot (Pot Only)'] = locations.Item_CookSet_PanOnly;
-DATA['Cooking Pot (Pot Only)'].tooltip = "Cooking Pot (Pot Only)";
+DATA['Cooking Pot (Pot Only)'].popup = "Cooking Pot (Pot Only)";
 locations.DgnObj_EntranceElevatorSP.titleFunction = function (shrine) {
     return shrine + "";
 }
 addMapPointsToData(Object.assign(DATA, locations));
 showList();
 
-var route = [];
-
-function handleFile(file) {
-    var reader = new FileReader();
-    reader.onLoad = function (text) {
-        var json;
-        try {
-            json = JSON.parse(text);
-        } catch (error) {
-            return;
-        }
+document.onclick = function (event) {
+    if (event.target.nodeName === "DIV" && event.target.classList.contains("popup")) {
+        var textElem = event.target.parentElement.lastElementChild;
+        textElem.select();
+        document.execCommand("copy");
     }
-    reader.readAsText(file, "UTF-8");
 }

@@ -1,8 +1,8 @@
-var DATA = {
+var DATA = Object.assign({
     Towers: {
         display_name: "Towers",
         img: "icons/tower.png",
-        tooltipFunction: function (d) {
+        popupFunction: function (d) {
             return d.id
         },
         locations: [{
@@ -55,7 +55,7 @@ var DATA = {
     Shrines: {
         display_name: "Shrines",
         img: "icons/shrine.png",
-        tooltipFunction: function (d) {
+        popupFunction: function (d) {
             return d.id
         },
         locations: [{
@@ -423,7 +423,7 @@ var DATA = {
     "Champion`s Ballad Shrines": {
         display_name: "Champion`s Ballad Shrines",
         img: "icons/shrine-dlc.png",
-        tooltipFunction: function (d) {
+        popupFunction: function (d) {
             return d.id
         },
         locations: [{
@@ -479,7 +479,7 @@ var DATA = {
     "Korok Seeds": {
         display_name: "Korok Seeds",
         img: "icons/korok.png",
-        tooltipFunction: function (d) {
+        popupFunction: function (d) {
             return "SSN: " + d.id + ", ZDN: " + d.zd_id + ", OBJ: " + d.obj_map_id
         },
         locations: [{
@@ -4984,4 +4984,4 @@ var DATA = {
             id: "K08"
         }]
     }
-};
+}, locations);

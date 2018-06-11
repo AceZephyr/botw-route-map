@@ -1,0 +1,13 @@
+{
+	"presets": {
+		"default": {
+			"id": "jkl",
+			"img": "icons/icon-gem.png"
+		}
+	},
+	"route": [
+		{
+			"id": "Korok-P01"
+		}
+	]
+}

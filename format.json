@@ -16,7 +16,7 @@
         comment: "string, comment to be shown with this step",
         draw_path: "boolean, should a path be drawn between the last objective and this one?",
         path_coords: [
-
+            [1234, 4321]
         ],
         cam_last: "boolean, should the camera zoom to show both this objective and the last objective?",
         counter: [

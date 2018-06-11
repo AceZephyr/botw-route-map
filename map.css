@@ -58,11 +58,16 @@
 #botw-map-search {
     background-color: white;
     height: 100%;
+    overflow-y: auto;
 }
 
 #botw-map-search-box {
     border: 1px solid black;
     width: 100%;
+}
+
+#botw-map-comments {
+    width: 80%;
 }
 
 .leaflet-container {
@@ -78,4 +83,20 @@
     position: relative;
     top: -50%;
     left: -50%;
+}
+
+.popup {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+.popup:active {
+    color: purple;
+}
+
+.popup-hidden-text {
+    position: absolute;
+    left: -100000px;
+    top: -100000px;
 }
