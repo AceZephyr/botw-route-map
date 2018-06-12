@@ -224,10 +224,6 @@ var SSN_TO_NAME = new Map([
     "Archie"
   ],
   [
-    "A56",
-    "Amelia"
-  ],
-  [
     "A57",
     "Ajax"
   ],
@@ -404,7 +400,7 @@ var SSN_TO_NAME = new Map([
     "Cooper"
   ],
   [
-    "C44",
+    "101.    C44",
     "Conway"
   ],
   [
@@ -1121,7 +1117,7 @@ var SSN_TO_NAME = new Map([
   ],
   [
     "F30",
-    "Flo"
+    "Filo"
   ],
   [
     "F31",
@@ -1992,10 +1988,6 @@ var SSN_TO_NAME = new Map([
     "Luigi"
   ],
   [
-    "L45",
-    "Lance"
-  ],
-  [
     "L46",
     "Ludlow"
   ],
@@ -2022,6 +2014,10 @@ var SSN_TO_NAME = new Map([
   [
     "L52",
     "Lowry"
+  ],
+  [
+    "L53",
+    "IrisSteth"
   ],
   [
     "L54",
@@ -2057,7 +2053,7 @@ var SSN_TO_NAME = new Map([
   ],
   [
     "L62",
-    "Lorna"
+    "Markus"
   ],
   [
     "L63",
@@ -2449,7 +2445,7 @@ var SSN_TO_NAME = new Map([
   ],
   [
     "P02",
-    "Tariana_"
+    "Tariana"
   ],
   [
     "P03",
@@ -2501,7 +2497,7 @@ var SSN_TO_NAME = new Map([
   ],
   [
     "P15",
-    "FlyingPies555"
+    "FlyingPies"
   ],
   [
     "P16",
@@ -2829,7 +2825,7 @@ var SSN_TO_NAME = new Map([
   ],
   [
     "R79",
-    "Rex"
+    "ShinyGarnet"
   ],
   [
     "R80",
@@ -3100,6 +3096,10 @@ var SSN_TO_NAME = new Map([
     "Whoopi"
   ],
   [
+    "W30",
+    "Adrain"
+  ],
+  [
     "W31",
     "Wilbur"
   ],
@@ -3241,7 +3241,7 @@ var SSN_TO_NAME = new Map([
   ],
   [
     "W66",
-    "Warner"
+    "ChucklesTheBeard"
   ],
   [
     "W67",
@@ -3826,10 +3826,6 @@ var NAME_TO_SSN = new Map([
     "A56"
   ],
   [
-    "Amelia",
-    "A56"
-  ],
-  [
     "Ajax",
     "A57"
   ],
@@ -4007,7 +4003,7 @@ var NAME_TO_SSN = new Map([
   ],
   [
     "Conway",
-    "C44"
+    "101.    C44"
   ],
   [
     "Cecil",
@@ -4722,7 +4718,7 @@ var NAME_TO_SSN = new Map([
     "F29"
   ],
   [
-    "Flo",
+    "Filo",
     "F30"
   ],
   [
@@ -5594,10 +5590,6 @@ var NAME_TO_SSN = new Map([
     "L45"
   ],
   [
-    "Lance",
-    "L45"
-  ],
-  [
     "Ludlow",
     "L46"
   ],
@@ -5624,6 +5616,10 @@ var NAME_TO_SSN = new Map([
   [
     "Lowry",
     "L52"
+  ],
+  [
+    "IrisSteth",
+    "L53"
   ],
   [
     "Lyanna",
@@ -5658,7 +5654,7 @@ var NAME_TO_SSN = new Map([
     "L61"
   ],
   [
-    "Lorna",
+    "Markus",
     "L62"
   ],
   [
@@ -6050,7 +6046,7 @@ var NAME_TO_SSN = new Map([
     "P01"
   ],
   [
-    "Tariana_",
+    "Tariana",
     "P02"
   ],
   [
@@ -6102,7 +6098,7 @@ var NAME_TO_SSN = new Map([
     "P14"
   ],
   [
-    "FlyingPies555",
+    "FlyingPies",
     "P15"
   ],
   [
@@ -6430,7 +6426,7 @@ var NAME_TO_SSN = new Map([
     "R78"
   ],
   [
-    "Rex",
+    "ShinyGarnet",
     "R79"
   ],
   [
@@ -6702,6 +6698,10 @@ var NAME_TO_SSN = new Map([
     "W29"
   ],
   [
+    "Adrain",
+    "W30"
+  ],
+  [
     "Wilbur",
     "W31"
   ],
@@ -6842,7 +6842,7 @@ var NAME_TO_SSN = new Map([
     "W65"
   ],
   [
-    "Warner",
+    "ChucklesTheBeard",
     "W66"
   ],
   [

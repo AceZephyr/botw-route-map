@@ -20,11 +20,6 @@ function setMapSize() {
 }
 setMapSize();
 
-function get(object, defaultObject) {
-	return typeof object !== "undefined" ? object : defaultObject;
-}
-
-
 function addMapPointsToData(obj) {
 	for ([key, val] of Object.entries(obj)) {
 		dataArr[key] = val;
@@ -103,6 +98,7 @@ var northEast = map.unproject([6000, -5000], 0);
 var bounds = new L.LatLngBounds(southWest, northEast);
 L.imageOverlay('BotW-Map.png', bounds).addTo(map);
 map.setMaxBounds(bounds);
+map.setView(new L.LatLng(0, 0), -4);
 
 locations.FldObj_FirstShrine_A_01.img = "icons/shrine-of-resurrection.png";
 locations.FldObj_FirstShrine_A_01.popup = "Shrine of Resurrection";
@@ -123,7 +119,6 @@ locations.DgnObj_EntranceElevatorSP.titleFunction = function (shrine) {
 }
 addMapPointsToData(Object.assign(DATA, locations));
 showList();
-
 document.onclick = function (event) {
 	if (event.target.nodeName === "DIV" && event.target.classList.contains("popup")) {
 		var textElem = event.target.parentElement.lastElementChild;
@@ -132,7 +127,8 @@ document.onclick = function (event) {
 	}
 }
 
-var displayThese = url.searchParams.get("d").split(",");
+var displayThese = get(url.searchParams.get("d"), "");
+displayThese = displayThese !== null ? displayThese.split(",") : [];
 for (var i = 0; i < displayThese.length; i++) {
 	togglePoints(displayThese[i]);
 }
