@@ -12,17 +12,25 @@ function getBySpecialId(id) {
 				if (koroksArr[i].id === id) {
 					var iStr = i + "";
 					var zeroes = "0".repeat(Math.ceil(Math.log10(koroksArr.length)));
-					var id = "Korok Seeds@" + (zeroes.substr(0, zeroes.length - iStr.length) + iStr);
+					var realid = "Korok Seeds@" + (zeroes.substr(0, zeroes.length - iStr.length) + iStr);
 				}
 			}
 		} else if (id.endsWith("Shrine")) {
 			var shrinesArr = DATA.Shrines.locations;
 			for (var i = 0; i < shrinesArr.length; i++) {
-
+				if (shrinesArr[i].id === id) {
+					var iStr = i + "";
+					var zeroes = "0".repeat(Math.ceil(Math.log10(koroksArr.length)));
+					var realid = "Shrines@" + (zeroes.substr(0, zeroes.length - iStr.length) + iStr);
+				}
 			}
 			var dlcShrinesArr = DATA["Champion`s Ballad Shrines"].locations;
 			for (var i = 0; i < dlcShrinesArr.length; i++) {
-
+				if (shrinesArr[i].id === id) {
+					var iStr = i + "";
+					var zeroes = "0".repeat(Math.ceil(Math.log10(koroksArr.length)));
+					var realid = "Champion`s Ballad Shrines@" + (zeroes.substr(0, zeroes.length - iStr.length) + iStr);
+				}
 			}
 		}
 	}
