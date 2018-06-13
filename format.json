@@ -1,30 +1,33 @@
 {
-    presets: {
-        //a preset is a default template applied to a route element. all of its values are copied into the route element but can be overridden by it or another preset.
-        //a preset cannot have a 'presets' field
-        "preset_name": {
-            key: "value"
-        },
-        "default" {
-            //default preset, applied to every route element
-        }
-    },
-    route: [{
-        id: "string, id of location",
-        lat: "number, latitude of location",
-        lng: "number, longitude of location",
-        comment: "string, comment to be shown with this step",
-        draw_path: "boolean, should a path be drawn between the last objective and this one?",
-        path_coords: [
+	presets: {
+		//a preset is a default template applied to a route element. all of its values are copied into the route element but can be overridden by it or another preset.
+		//a preset cannot have a 'presets' field
+		"preset_name": {
+			key: "value"
+		},
+		"default" {
+			//default preset, applied to every route element
+		}
+	},
+	route: [{
+		id: "string, id of location",
+		lat: "number, latitude of location",
+		lng: "number, longitude of location",
+		comment: "string, comment to be shown with this step",
+		draw_path: "boolean, should a path be drawn between the last objective and this one?",
+		path_coords: [
             [1234, 4321]
         ],
-        cam_last: "boolean, should the camera zoom to show both this objective and the last objective?",
-        counter: [
+		cam_last: "boolean, should the camera zoom to show both this objective and the last objective?",
+		counter: [
             "counter command, in the format of '<counter><operation><value>'. counter is any alphanumeric or underscore string, operation is '+','-','*','/',or '=', and value is any number."
         ],
-        img: "string, image path to draw objective on which overrides the default",
-        presets: [
+		img: "string, image path to draw objective on which overrides the default",
+		presets: [
             "string, name of preset"
-        ]
+        ],
+		concat_merged_arrays: [
+			"string, name of array to not override with a preset and instead concat the preset's array values to the defined ones. probably used for the counter array so you can have preset counter changes (when you get a korok for example) and maybe have other counter operations there too"
+		]
     }]
 }
