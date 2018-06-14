@@ -23,11 +23,19 @@
 			"comment": "Exit Shrine of Resurrection, grab wooden axe, dive to this korok",
 			"presets": [
 				"korok"
-			]
+			],
+			"draw_path": true,
+			"path": {
+				"points": [
+					"Weapon_Lsword_032@09"
+				],
+				"color": "red"
+			}
         }, {
 			"id": "Great Plateau Tower",
 			"comment": "Run this way to Tower, Zelda cutscene, get Boko Bow, Shield, and Traveler's Sword, activate tower",
-			"img": "icons/tower.png"
+			"img": "icons/tower.png",
+			"draw_path": true
         }
 	]
 }

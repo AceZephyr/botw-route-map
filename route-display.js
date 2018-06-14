@@ -191,6 +191,53 @@ function executeCommand(command, forwards) {
 	$("#botw-counters #botw-counter-" + command.counter).html(command.counter + ": " + val + "");
 }
 
+function flip(coords) {
+	return [-(coords[1]), coords[0]];
+}
+
+function draw(coords, img, drawPath = false, path = {}, pathFrom = {}) {
+	var marker = L.marker(flip(coords), {
+		icon: L.divIcon({
+			html: "<img src='" + img + "'>"
+		})
+	});
+	layerGroup.addLayer(marker);
+	if (drawPath) {
+		draw(route[index - 1].coords, get(route[index - 1].img, "icons/marker.png"));
+		var defaultImg = get(path.default_img, "icons/marker.png");
+		var len = Array.isArray(path.points) ? path.points.length : 0
+		for (var i = 0; i < len; i++) {
+			if (Array.isArray(path.points[i]))
+				path.points[i] = {
+					coords: path.points[i]
+				};
+			if (typeof path.points[i] === "string") {
+				path.points[i] = {
+					coords: getById(path.points[i])
+				};
+			}
+			if (typeof path.points[i].coords === "undefined") {
+				err("Path is missing coords");
+			}
+			path.points[i].img = get(path.points[i].img, "icons/marker.png");
+			draw(path.points[i].coords, path.points[i].img);
+		}
+		var pointsObjs = [route[index - 1]].concat(path.points).concat([route[index]]);
+		var pointsArr = [];
+		for (var i = 0; i < pointsObjs.length; i++) {
+			console.log(pointsObjs[i]);
+			if (typeof pointsObjs[i] === "object")
+				pointsArr[pointsArr.length] = flip(pointsObjs[i].coords);
+		}
+		console.log(pointsArr);
+		var color = get(path.color, "red");
+		var line = L.polyline(pointsArr, {
+			color: color
+		});
+		layerGroup.addLayer(line);
+	}
+}
+
 function drawStep(forwards, force = false) {
 	if (!force && ((!forwards && (index <= 0 || index > route.length)) || (forwards && (index < 0 || index >= route.length - 1)))) {
 		return;
@@ -199,18 +246,15 @@ function drawStep(forwards, force = false) {
 	if (!forwards) index--;
 	var step = route[index];
 	var lat, lng;
-	if (typeof step.coords !== "undefined") {
-		lat = step.coords[0];
-		lng = step.coords[1];
-	} else {
+	if (typeof step.coords === "undefined") {
 		return;
 	}
 	var imgUrl = get(step.img, "icons/marker.png");
 	var counterCmds = get(forwards ? step.counter : route[index + 1].counter, []);
 	var camLast = get(step.cam_last, false);
 	var comment = get(step.comment, "");
-	var drawPath = get(step.draw_path, false);
-	var pathCoords = get(step.path_coords, []);
+	var drawPath = get(index === 0 ? false : step.draw_path, false);
+	var path = get(step.path, {});
 	for (var i = 0; i < counterCmds.length; i++) {
 		var command = counterCmds[i];
 		if (!counterVars.has(command.counter)) {
@@ -227,14 +271,9 @@ function drawStep(forwards, force = false) {
 	}
 	layerGroup.removeFrom(map);
 	layerGroup.clearLayers();
-	var marker = L.marker([-(lng), lat], {
-		icon: L.divIcon({
-			html: "<img src='" + imgUrl + "'>"
-		})
-	});
-	layerGroup.addLayer(marker);
+	draw(step.coords, imgUrl, drawPath, path);
 	layerGroup.addTo(map);
-	map.setView([-(lng), lat], force && forwards && index === 0 ? 0 : map.getZoom(), {
+	map.setView(flip(step.coords), force && forwards && index === 0 ? 0 : map.getZoom(), {
 		animate: true
 	});
 	$("#botw-map-comments").html("<p>" + comment + "</p>");
