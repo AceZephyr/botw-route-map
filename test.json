@@ -1,20 +1,33 @@
 {
-    "presets": {
-        "default": {
-            "img": "icons/korok.png",
-            "counter": [
-
-            ]
-        }
-    },
-    "route": [
-        {
-            "id": "Great Plateau Tower",
-            "img": "icons/tower.png",
-            "comment": "This is a tower!"
+	"presets": {
+		"default": {
+			"img": "icons/marker.png"
+		},
+		"korok": {
+			"img": "icons/korok.png",
+			"counter": [
+				"k+1"
+			]
+		}
+	},
+	"route": [
+		{
+			"id": "FldObj_FirstShrine_A_01@0",
+			"img": "icons/shrine-of-resurrection.png",
+			"comment": "Start a new file",
+			"counter": [
+				"k=0"
+			]
 		}, {
-            "id": "-P01",
-            "comment": "Here's a korok"
+			"id": "-P10",
+			"comment": "Exit Shrine of Resurrection, grab wooden axe, dive to this korok",
+			"presets": [
+				"korok"
+			]
+        }, {
+			"id": "Great Plateau Tower",
+			"comment": "Run this way to Tower, Zelda cutscene, get Boko Bow, Shield, and Traveler's Sword, activate tower",
+			"img": "icons/tower.png"
         }
 	]
 }
