@@ -121,13 +121,16 @@ function handleFile(file) {
 				for ([name, k] of Object.entries(presets)) {
 					//is this that preset?
 					if (preset === name) {
+						//merge the 'merge' properties first
+						console.log(step['merge'], k['merge']);
+						step['merge'] = get(step['merge'], []).concat(get(k['merge'], []));
 						//put each preset's property in the object
 						for ([a, b] of Object.entries(k)) {
 							if (a !== "presets") {
-								if (typeof step[a] === "undefined") {
-									if (Array.isArray(step[a]) && typeof step["merge"] !== "undefined" && step["merge"].includes(a)) {
-										step[a] = step[a].concat(b);
-									} else {
+								if (a !== "merge") {
+									if (Array.isArray(b) && step['merge'].includes(a)) {
+										step[a] = typeof step[a] === "undefined" ? b : step[a].concat(b);
+									} else if (typeof step[a] === "undefined") {
 										step[a] = b;
 									}
 								}
@@ -225,11 +228,9 @@ function draw(coords, img, drawPath = false, path = {}, pathFrom = {}) {
 		var pointsObjs = [route[index - 1]].concat(path.points).concat([route[index]]);
 		var pointsArr = [];
 		for (var i = 0; i < pointsObjs.length; i++) {
-			console.log(pointsObjs[i]);
 			if (typeof pointsObjs[i] === "object")
 				pointsArr[pointsArr.length] = flip(pointsObjs[i].coords);
 		}
-		console.log(pointsArr);
 		var color = get(path.color, "red");
 		var line = L.polyline(pointsArr, {
 			color: color

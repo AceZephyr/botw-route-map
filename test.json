@@ -7,6 +7,9 @@
 			"img": "icons/korok.png",
 			"counter": [
 				"k+1"
+			],
+			"merge": [
+				"counter"
 			]
 		}
 	},
