@@ -107,7 +107,7 @@ function handleFile(file) {
 		}
 		presets = get(json['presets'], {});
 		var jsonRoute = get(json['route'], []);
-		for (var i = 0; i < jsonRoute.length && i < 5; i++) {
+		for (var i = 0; i < jsonRoute.length; i++) {
 			var step = jsonRoute[i];
 			//set all preset values
 			//loop through presets
