@@ -400,7 +400,7 @@ var SSN_TO_NAME = new Map([
     "Cooper"
   ],
   [
-    "101.    C44",
+    "C44",
     "Conway"
   ],
   [
@@ -2628,7 +2628,7 @@ var SSN_TO_NAME = new Map([
     "Renee"
   ],
   [
-    "R30 ",
+    "R30",
     "Rhianna"
   ],
   [
@@ -4003,7 +4003,7 @@ var NAME_TO_SSN = new Map([
   ],
   [
     "Conway",
-    "101.    C44"
+    "C44"
   ],
   [
     "Cecil",
@@ -6231,7 +6231,7 @@ var NAME_TO_SSN = new Map([
   ],
   [
     "Rhianna",
-    "R30 "
+    "R30"
   ],
   [
     "Rhonda",
