@@ -2,14 +2,15 @@ var url = new URL(window.location.href);
 var dataArr = {};
 var layerArr = [];
 $("#botw-map-search-box").on("input", showList);
+$("#botw-map-search-top-text").on("click", clear);
 
 function showList() {
 	$("#botw-map-search-results").html("");
 	var val = $("#botw-map-search-box").val().toLowerCase();
 	var results = $("#botw-map-search-results");
 	for ([name, obj] of Object.entries(dataArr)) {
-		if (name.toLowerCase().includes(val)) {
-			results.append(`<p onclick="togglePoints('%name%');">%name%</p>`.replace(/%name%/g, name));
+		if ((get(obj["display_name"], "").toLowerCase() + name.toLowerCase()).includes(val)) {
+			results.append(`<p onclick="togglePoints('%name%');">%text%</p>`.replace(/%text%/g, get(obj["display_name"], "") !== name ? "(" + get(obj["display_name"], "") + ") " + name : name).replace(/%name%/g, name));
 		}
 	}
 }
@@ -79,6 +80,14 @@ function togglePoints(name) {
 		layerArr[name] = layerGroup;
 	} else {
 		//it's visible. make it invisible.
+		var layerGroup = layerArr[name];
+		layerGroup.remove();
+		delete layerArr[name];
+	}
+}
+
+function clear() {
+	for ([name, k] of Object.entries(layerArr)) {
 		var layerGroup = layerArr[name];
 		layerGroup.remove();
 		delete layerArr[name];
