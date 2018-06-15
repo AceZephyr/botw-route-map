@@ -122,7 +122,6 @@ function handleFile(file) {
 					//is this that preset?
 					if (preset === name) {
 						//merge the 'merge' properties first
-						console.log(step['merge'], k['merge']);
 						step['merge'] = get(step['merge'], []).concat(get(k['merge'], []));
 						//put each preset's property in the object
 						for ([a, b] of Object.entries(k)) {
