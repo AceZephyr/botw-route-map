@@ -65,6 +65,10 @@
     padding: 2px;
 }
 
+#botw-map-file-input, #botw-map-jump-btn {
+    cursor: pointer;
+}
+
 #botw-map-search-box {
 	border: 1px solid black;
 	width: 100%;

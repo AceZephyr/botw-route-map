@@ -24,9 +24,9 @@
                 <input type="button" value="Forwards" id="botw-button-forwards" onclick="drawStep(true)"> </div>
         </div>
         <div id="botw-map-file-div">
-            <input type="file" name="botw=map-file-input" id="botw=map-file-input" onchange="handleFile(this.files[0])">
-            <input type="text" name="botw-map-jump-input" id="botw-map-jump-input">
-            <input type="button" name="botw-map-jump-btn" id="botw-map-jump-btn" value="Jump" onclick="jump()"> </div>
+            <input type="file" name="botw=map-file-input" id="botw-map-file-input" class="cp" onchange="handleFile(this.files[0])">
+            <input type="text" name="botw-map-jump-input" id="botw-map-jump-input" title="Input a number to go to that step. +/- then a number go forward and back">
+            <input type="button" clas="cp" name="botw-map-jump-btn" id="botw-map-jump-btn" value="Jump" onclick="jump()"> </div>
         <div id="botw-counters"></div>
         <div id="botw-map-comments"> </div>
     </div>
