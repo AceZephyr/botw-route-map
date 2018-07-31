@@ -29,8 +29,8 @@ function setMapSize() {
     $('#botw-map-container').css("height", (window.innerHeight) * (2 / 3));
 }
 $(window).resize(setMapSize);
-$("#botw-map-jump-input").keydown(function(e) {
-    if(e.keyCode === 13) {
+$("#botw-map-jump-input").keydown(function (e) {
+    if (e.keyCode === 13) {
         jump();
     }
 });
@@ -212,7 +212,7 @@ function draw(coords, img, drawPath = false, path = {}, pathFrom = {}) {
     if (drawPath) {
         draw(route[index - 1].coords, get(route[index - 1].img, "icons/marker.png"));
         var defaultImg = get(path.default_img, "icons/marker.png");
-        var len = Array.isArray(path.points) ? path.points.length : 0
+        var len = Array.isArray(path.points) ? path.points.length : 0;
         for (var i = 0; i < len; i++) {
             if (Array.isArray(path.points[i])) path.points[i] = {
                 coords: path.points[i]
@@ -221,6 +221,9 @@ function draw(coords, img, drawPath = false, path = {}, pathFrom = {}) {
                 path.points[i] = {
                     coords: getById(path.points[i])
                 };
+            }
+            if (typeof path.points[i].id !== "undefined") {
+                path.points[i].coords = getById(path.points[i].id);
             }
             if (typeof path.points[i].coords === "undefined") {
                 err("Path is missing coords");
