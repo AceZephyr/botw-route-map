@@ -42,17 +42,24 @@ L.imageOverlay('BotW-Map.png', bounds).addTo(map);
 map.setMaxBounds(bounds);
 map.setView(new L.LatLng(0, 0), -4);
 
+//Writes an error message to the page.
+
 function err(message) {
     $("#botw-map-comments").append("<p>FATAL: " + message + "</p>");
     throw message;
 }
+
+//Writes a warning message to the page.
 
 function warn(message) {
     $("#botw-map-comments").append("<p>WARN: " + message + "</p>");
     throw message;
 }
 
+//Gets an object on the map by its ID or name.
+
 function getById(id) {
+    //Korok
     if (id.startsWith("-")) {
         id = id.substr(1).trim();
         if (id.length === 3 && id.search(/[a-zA-Z][0-9][0-9]/) !== -1) {
@@ -64,6 +71,7 @@ function getById(id) {
             }
         }
     }
+    //Shrine or DLC Shrine Name
     else if (id.endsWith(" Shrine")) {
         var shrinesArr = DATA.Shrines.locations;
         for (var i = 0; i < shrinesArr.length; i++) {
@@ -78,6 +86,7 @@ function getById(id) {
             }
         }
     }
+    //Tower Name
     else if (id.endsWith(" Tower")) {
         var towersArr = DATA.Towers.locations;
         for (var i = 0; i < towersArr.length; i++) {
@@ -86,6 +95,7 @@ function getById(id) {
             }
         }
     }
+    //Standard ID format, which will find its point in constant time.
     if (id.indexOf("@") !== -1) {
         id = id.split("@");
         var type = id[0];
@@ -98,6 +108,8 @@ function getById(id) {
     }
     return [];
 }
+
+//Called when a file is uploaded.
 
 function handleFile(file) {
     var reader = new FileReader();
@@ -244,20 +256,22 @@ function draw(coords, img, drawPath = false, path = {}, pathFrom = {}) {
     }
 }
 
+//Called when you press the Jump button
+
 function jump() {
     var str = $("#botw-map-jump-input").val();
     var jumps;
     var forwards;
     if (str.startsWith('+')) {
-        jumps = parseInt(str.substr(1), 10)
+        jumps = parseInt(str.substr(1), 10);
         forwards = true;
     }
     else if (str.startsWith('-')) {
-        jumps = parseInt(str.substr(1), 10)
+        jumps = parseInt(str.substr(1), 10);
         forwards = false;
     }
     else {
-        jumps = parseInt(str, 10) - index
+        jumps = parseInt(str, 10) - index;
         forwards = jumps > 0;
         jumps = Math.abs(jumps);
     }
